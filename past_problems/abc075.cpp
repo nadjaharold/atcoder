@@ -1,35 +1,122 @@
+// B - Minesweeper
 // https://atcoder.jp/contests/abc075/tasks/abc075_b
 #include <bits/stdc++.h>
 using namespace std;
-int solve()
+#define lli long long int
+#define uli unsigned long long int
+#define rep(i, m, n) for (lli i = m; i < (n); i++)
+#define repe(i, m, n) for (lli i = m; i <= (n); i++)
+#define ALL(x) (x).begin(), (x).end()
+#define SIZE(x) ((lli)(x).size())
+#define MAX(x) *max_element(ALL(x))
+#define MIN(x) *min_element(ALL(x))
+#define _GLIBCXX_DEBUG
+const lli INF = 2147483647;
+const lli MINF = -2147483648;
+const lli LINF = 9223372036854775807;
+const lli MOD = 1000000007; //10^9+7
+const double PI = acos(-1);
+#define SORT(n) sort(n.begin(), n.end())
+#define SORTR(n) sort(n.begin(), n.end(), greater<int>())
+#define REV(n) reverse(n.begin(), n.end())
+#define pb push_back
+#define eb emplace_back
+#define mp make_pair
+#pragma GCC optimize("Ofast")
+using vi = vector<int>;
+using vvi = vector<vi>;
+using vvvi = vector<vvi>;
+using vlli = vector<lli>;
+using vvli = vector<vlli>;
+using vs = vector<string>;
+using vvs = vector<vs>;
+using vb = vector<bool>;
+using vvb = vector<vb>;
+using ll = long long;
+// vector入力
+template <typename T>
+istream &operator>>(istream &is, vector<T> &vec)
+{
+  for (T &x : vec)
+    is >> x;
+  return is;
+}
+// vector出力
+template <typename T>
+ostream &operator<<(ostream &os, vector<T> &vec)
+{
+  // os << '{';
+  for (int i = 0; i < vec.size(); i++)
+  {
+    os << vec[i] << (i + 1 == vec.size() ? "" : "");
+  }
+  // os << '}';
+  return os;
+}
+// aよりもbが大きいならばaをbで更新する(更新されたならばtrueを返す)
+template <typename T>
+bool chmax(T &a, const T &b)
+{
+  if (a < b)
+  {
+    a = b; // aをbで更新
+    return true;
+  }
+  return false;
+}
+// aよりもbが小さいならばaをbで更新する(更新されたならばtrueを返す)
+template <typename T>
+bool chmin(T &a, const T &b)
+{
+  if (a > b)
+  {
+    a = b; // aをbで更新
+    return true;
+  }
+  return false;
+}
+
+int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  int n, h, w, sx, sy, gx, gy, ans = 0, count = 0;
-  const int dx[] = {1, 0, -1, 1, -1, 0, 1, -1};
-  const int dy[] = {1, 1, 1, 0, 0, -1, -1, -1};
+  lli a, b, c, h, n, w, ans = 0, count = 0;
+  string t;
+  vector<pair<string, pair<lli, lli>>> pr;
   cin >> h >> w;
-  vector<string> s(h);
-  for (int i = 0; i < h; i++)
+  vs s(h);
+  rep(i, 0, h)
   {
     cin >> s[i];
   }
-  sx = 0;
-  sy = 0;
-  gx = w;
-  gy = h;
+  const lli dx[] = {1, 0, -1, 1, -1, 0, -1, 1};
+  const lli dy[] = {1, 1, 1, 0, 0, -1, -1, -1};
 
-  for (int i = 0; i < h; i++)
+  rep(i, 0, h)
   {
-    for (int j = 0; j < w; j++)
+    rep(j, 0, w)
     {
+      if (s[i][j] == '#')
+      {
+        continue;
+      }
+      rep(k, 0, 8)
+      {
+        a = i + dy[k];
+        b = j + dx[k];
+        if (a < 0 || a >= h)
+          continue;
+        if (b < 0 || b >= w)
+          continue;
+        if (s[a][b] == '#')
+          count++;
+      }
+      s[i][j] = count + '0';
+      count = 0;
     }
   }
-
-  cout << n << endl;
-  return 0;
-}
-signed main()
-{
-  solve();
+  rep(i, 0, h)
+  {
+    cout << s[i] << endl;
+  }
 }
