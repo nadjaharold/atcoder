@@ -1,3 +1,4 @@
+// B - Cut and Count
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
@@ -78,24 +79,34 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli b, c, n, q, ans = 0, b_value = 0;
+  lli a, b, c, h, n, w, ans = 0, count = 0;
+  string s, t;
+  vector<pair<char, lli>> pr;
   cin >> n;
-  vlli a(n), d(100010, 0);
+  cin >> s;
+  pr.emplace_back(make_pair(s[0], 1));
   rep(i, 0, n)
   {
-    cin >> a[i];
-    ans += a[i];
-    d[a[i]] += 1;
+    for (auto x : pr)
+    {
+      if (s[i] == x.first)
+      {
+        ans = x.second + 1;
+        pr.emplace_back(make_pair(s[i], ans));
+      }
+      else
+      {
+        pr.emplace_back(make_pair(s[i], ans));
+      }
+    }
   }
-  cin >> q;
-  rep(i, 0, q)
+  for (auto x : pr)
   {
-    cin >> b >> c;
-    b_value = d[b];
-    d[b] = 0;
-    d[c] += b_value;
-    ans -= b_value * b;
-    ans += c * b_value;
-    cout << ans << endl;
+    if (x.second >= 2)
+    {
+      count++;
+    }
+    cout << x.first << " " << x.second << endl;
   }
+  cout << count << endl;
 }
