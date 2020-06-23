@@ -79,34 +79,51 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli a, b, c, h, n, w, ans = 0, count = 0;
-  string s, t;
+  lli a, b, h = 0, n, w, ans = 0, count = 0;
+  string s, t, u;
   vector<pair<char, lli>> pr;
   cin >> n;
   cin >> s;
-  pr.emplace_back(make_pair(s[0], 1));
-  rep(i, 0, n)
+
+  rep(i, 0, n - 1)
   {
-    for (auto x : pr)
+    t = s.substr(0, i + 1);
+    u = s.substr(i + 1, n - (i + 1));
+    vlli d(26, 0), e(26, 0);
+    rep(j, 0, t.size())
     {
-      if (s[i] == x.first)
+      for (char c = 'a'; c <= 'z'; ++c)
       {
-        ans = x.second + 1;
-        pr.emplace_back(make_pair(s[i], ans));
+        if (t[j] == c)
+        {
+          d[count]++;
+        }
+        count++;
       }
-      else
+      count = 0;
+    }
+    rep(j, 0, u.size())
+    {
+      for (char c = 'a'; c <= 'z'; ++c)
       {
-        pr.emplace_back(make_pair(s[i], ans));
+        if (u[j] == c)
+        {
+          e[count]++;
+        }
+        count++;
+      }
+      count = 0;
+    }
+
+    rep(j, 0, 26)
+    {
+      if (d[j] >= 1 && e[j] >= 1)
+      {
+        ans++;
       }
     }
+    h = max(h, ans);
+    ans = 0;
   }
-  for (auto x : pr)
-  {
-    if (x.second >= 2)
-    {
-      count++;
-    }
-    cout << x.first << " " << x.second << endl;
-  }
-  cout << count << endl;
+  cout << h << endl;
 }
