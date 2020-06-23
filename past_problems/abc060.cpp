@@ -1,5 +1,4 @@
-// B - Cut and Count
-// 文字列内に出現する各英小文字の個数を計測。charの数え方。
+// B - Choose Integers
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
@@ -80,51 +79,23 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli a, b, h = 0, n, w, ans = 0, count = 0;
-  string s, t, u;
-  vector<pair<char, lli>> pr;
-  cin >> n;
-  cin >> s;
-
-  rep(i, 0, n - 1)
+  lli a, b, c, h, n, w, ans = 0, count = 0;
+  string s, t;
+  vector<pair<string, pair<lli, lli>>> pr;
+  cin >> a >> b >> c;
+  vlli d;
+  for (lli i = a; i <= 1000000; i += a)
   {
-    t = s.substr(0, i + 1);
-    u = s.substr(i + 1, n - (i + 1));
-    vlli d(26, 0), e(26, 0);
-    rep(j, 0, t.size())
-    {
-      for (char c = 'a'; c <= 'z'; ++c)
-      {
-        if (t[j] == c)
-        {
-          d[count]++;
-        }
-        count++;
-      }
-      count = 0;
-    }
-    rep(j, 0, u.size())
-    {
-      for (char c = 'a'; c <= 'z'; ++c)
-      {
-        if (u[j] == c)
-        {
-          e[count]++;
-        }
-        count++;
-      }
-      count = 0;
-    }
-
-    rep(j, 0, 26)
-    {
-      if (d[j] >= 1 && e[j] >= 1)
-      {
-        ans++;
-      }
-    }
-    h = max(h, ans);
-    ans = 0;
+    d.pb(i);
   }
-  cout << h << endl;
+  // cout << d << endl;
+  rep(i, 0, d.size())
+  {
+    if (d[i] % b == c)
+    {
+      cout << "YES" << endl;
+      return 0;
+    }
+  }
+  cout << "NO" << endl;
 }
