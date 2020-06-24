@@ -1,4 +1,5 @@
 // B - Checkpoints
+// pairにインデックスと2要素を持たせ、pair同士での多重ループ。良問。
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
