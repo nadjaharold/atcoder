@@ -107,6 +107,7 @@ int main()
           z.pb(s[k]);
         }
       }
+      // cout << z << endl;
       if (z == target)
       {
         cout << "YES" << endl;
