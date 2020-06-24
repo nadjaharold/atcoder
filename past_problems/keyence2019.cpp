@@ -1,5 +1,6 @@
 // https://atcoder.jp/contests/keyence2019/tasks/keyence2019_b
 // B - KEYENCE String
+// 文字列内に該当の単語が部分文字列として含まれているか。良問。
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
