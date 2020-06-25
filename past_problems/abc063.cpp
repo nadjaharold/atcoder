@@ -83,12 +83,34 @@ int main()
   string s, t;
   vector<pair<string, pair<lli, lli>>> pr;
   cin >> n;
-  vlli d(n);
+  vlli d(n), e;
   rep(i, 0, n)
   {
     cin >> d[i];
+    e.pb(d[i]);
+    ans += d[i];
   }
-  cout << n << endl;
+  SORT(e);
+  rep(i, 0, n)
+  {
+    if (ans % 10 != 0)
+    {
+      cout << ans << endl;
+      return 0;
+    }
+    else
+    {
+      if (e[i] % 10 != 0)
+      {
+        ans -= e[i];
+      }
+      else
+      {
+        continue;
+      }
+    }
+  }
+  cout << 0 << endl;
 }
 
 // B - Varied
