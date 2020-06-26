@@ -97,7 +97,6 @@ int main()
     }
     else
     {
-
       ans += t;
     }
   }
