@@ -79,14 +79,28 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli a, b, c, h, n, w, ans = 0, count = 0;
-  string s, t;
+  lli a, b, c, t, h, n, w, ans = 0, count = 0;
+  string s;
   vector<pair<string, pair<lli, lli>>> pr;
-  cin >> n;
-  vlli d(n);
+  cin >> n >> t;
+  vlli d(n), e(n, 0);
   rep(i, 0, n)
   {
     cin >> d[i];
   }
-  cout << n << endl;
+  rep(i, 1, n)
+  {
+    if (d[i] < d[i - 1] + t)
+    {
+      count = d[i] - d[i - 1];
+      ans += min(t, count);
+    }
+    else
+    {
+
+      ans += t;
+    }
+  }
+  ans += t;
+  cout << ans << endl;
 }
