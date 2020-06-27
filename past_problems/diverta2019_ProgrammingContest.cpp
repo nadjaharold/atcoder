@@ -79,14 +79,22 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli a, b, c, h, n, w, ans = 0, count = 0;
+  lli a, b, c, h, n, r, g, R, G, B, w, ans = 0, count = 0;
   string s, t;
   vector<pair<string, pair<lli, lli>>> pr;
-  cin >> n;
-  vlli d(n);
-  rep(i, 0, n)
+  cin >> r >> g >> b >> n;
+  repe(i, 0, 3000)
   {
-    cin >> d[i];
+    R = i;
+    repe(j, 0, 3000)
+    {
+      G = j;
+      B = (n - (R * r + G * g)) / b;
+      if (R * r + G * g + B * b == n && B >= 0)
+      {
+        count++;
+      }
+    }
   }
-  cout << n << endl;
+  cout << count << endl;
 }
