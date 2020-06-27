@@ -1,4 +1,4 @@
-// C - Sentou
+// C - Write and Erase
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
@@ -79,27 +79,24 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli a, b, c, t, h, n, w, ans = 0, count = 0;
-  string s;
-  vector<pair<string, pair<lli, lli>>> pr;
-  cin >> n >> t;
-  vlli d(n), e(n, 0);
+  lli a, b, c, h, n, w, ans = 0, count = 0;
+  string s, t;
+  vector<pair<lli, lli>> pr;
+  cin >> n;
+  vlli d(n), e(1000010, 0);
+  set<lli> g;
   rep(i, 0, n)
   {
     cin >> d[i];
-  }
-  rep(i, 1, n)
-  {
-    if (d[i] < d[i - 1] + t)
+
+    if (g.count(d[i]))
     {
-      count = d[i] - d[i - 1];
-      ans += min(t, count);
+      g.erase(d[i]);
     }
     else
     {
-      ans += t;
+      g.insert(d[i]);
     }
   }
-  ans += t;
-  cout << ans << endl;
+  cout << g.size() << endl;
 }
