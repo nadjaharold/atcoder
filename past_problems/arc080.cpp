@@ -1,4 +1,7 @@
 // C - 4-adjacent
+// すぬけ君の目標は、aa の要素を自由に並べ替え、次の条件が成り立つようにすることです。
+// *各 1≤i≤N−1 について、ai と ai + 1 の積は 4 の倍数である
+// すぬけ君が目標を達成できるか判定してください。
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
