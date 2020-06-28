@@ -26,3 +26,8 @@ int main()
 
 // 4
 // 0 1 2 2 3 のように出力される
+
+
+// 下記も参考になる。
+// a<=n<=b (MAX:10^18)の範囲に含まれる CでもDでも割り切れない数値の個数
+// https://atcoder.jp/contests/abc131/tasks/abc131_c
