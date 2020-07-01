@@ -79,14 +79,27 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli k, a, b, c, h, n, w, ans = 0, count = 0;
+  lli k, a, b, c, h, n, w, ans = 1, count = 1, coin = 0;
   string s, t;
   vector<pair<string, pair<lli, lli>>> pr;
   cin >> k >> a >> b;
-  
-  rep(i, 0, n)
+
+  if (b - a <= 2 || k < a - 1)
   {
-    cin >> d[i];
+    ans += k;
+    cout << ans << endl;
+    return 0;
   }
-  cout << n << endl;
+  else
+  {
+    ans = a;
+    k -= a - 1;
+    if (k % 2 == 1)
+    {
+      ans++;
+      k--;
+    }
+    ans += (b - a) * (k / 2);
+    cout << ans << endl;
+  }
 }
