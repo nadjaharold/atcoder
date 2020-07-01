@@ -1,4 +1,6 @@
 // C - When I hit my pocket...
+// ロジックをよく考えて実装に展開していく。難しめ。良問。
+// 解説: https://drken1215.hatenablog.com/entry/2019/05/13/125000
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
