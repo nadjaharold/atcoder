@@ -1,3 +1,4 @@
+// A - Shrinking
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
@@ -84,50 +85,42 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli a, b, c, h, k, n, w, ans = 0, count = 0;
+  lli a, b, c, h, n, w, ans = 0, count = 0;
   string s, t;
-  vector<pair<string, pair<lli, lli>>> pr;
-  cin >> x >> n;
-  vlli p(n), d(300, 0), e;
-  set<lli> g;
-  repe(i, 1, 300)
+  vector<pair<char, vlli>> pr;
+  cin >> t;
+  vlli d(26, 0), e(26, 0);
+  a = t.size();
+  rep(j, 0, a)
   {
-    d[i - 1] = i - 100;
+    vlli f;
+    pr.eb(mp(t[j], f));
+    for (char c = 'a'; c <= 'z'; ++c)
+    {
+      if (t[j] == c)
+      {
+        d[count]++;
+        ans = max(ans, d[count]);
+      }
+      count++;
+    }
+    count = 0;
   }
-  rep(i, 0, n)
+  x = t.size() / 2;
+  // sort(pr.begin(), pr.end(), cmp);
+  rep(i, 0, 26)
   {
-    cin >> p[i];
-    g.insert(p[i]);
+    if (d[i] == ans)
+    {
+      b = i + 1;
+      cout << b << "!" << endl;
+    }
   }
-  sort(d.begin(), d.end(), cmp);
+  // cout << ans << endl;
+  // cout << a << endl;
 
-  rep(i, 0, d.size())
+  for (auto y : pr)
   {
-    if (g.count(d[i]) == 0)
-    {
-      e.push_back(d[i]);
-    }
+    cout << y.first << " : " << y.second << endl;
   }
-  // SORT(e);
-  if (abs(x - e[0]) == abs(x - e[1]))
-  {
-    if (e[0] > e[1])
-    {
-      cout << e[1] << endl;
-    }
-    else
-    {
-      cout << e[0] << endl;
-    }
-  }
-  else
-  {
-    cout << e[0] << endl;
-  }
-
-  // rep(i, 0, d.size())
-  // {
-  //   cout << d[i] << " ";
-  // }
-  // cout << endl;
 }
