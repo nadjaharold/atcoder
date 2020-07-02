@@ -82,7 +82,7 @@ int main()
   lli a, b, c, h, n, w, ans = 0, count = 0;
   string s, t;
   vector<pair<string, pair<lli, lli>>> pr;
-  cin >> c;
+  cin >> s;
   vlli d(n);
   rep(i, 0, n)
   {
