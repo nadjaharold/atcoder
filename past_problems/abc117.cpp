@@ -79,14 +79,33 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli a, b, c, h, n, w, ans = 0, count = 0;
+  lli a, b, c, h, n, m, w, ans = 0, count = 0;
   string s, t;
   vector<pair<string, pair<lli, lli>>> pr;
-  cin >> s;
-  vlli d(n);
-  rep(i, 0, n)
+  cin >> n >> m;
+  vlli d(m), e(m - 1, 0);
+  rep(i, 0, m)
   {
     cin >> d[i];
   }
-  cout << n << endl;
+  SORT(d);
+  rep(i, 0, m - 1)
+  {
+    w = abs(d[i + 1] - d[i]);
+    e[i] = w;
+  }
+  SORTR(e);
+  count = n - 1;
+  rep(i, 0, m - 1)
+  {
+    if (count <= 0)
+    {
+      ans += e[i];
+    }
+    else
+    {
+      count--;
+    }
+  }
+  cout << ans << endl;
 }
