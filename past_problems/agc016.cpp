@@ -116,10 +116,12 @@ int main()
           count = 0;
         }
         tmp = max(tmp, count);
+        // std::cout << "tmp: " << tmp << endl;
       }
       count = 0;
-      ans = min(ans, tmp);
     }
+    ans = min(ans, tmp);
+    tmp = 0;
   }
   std::cout << ans << endl;
 }
