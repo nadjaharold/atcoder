@@ -85,76 +85,41 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli a, b, h, n, w, ans = 0, count = 0;
+  lli a, b, h, n, w, ans = INF, count = 0, tmp = 0;
   string s, t;
   vector<pair<char, vlli>> pr;
   cin >> t;
-  vlli d(26, 0), e;
-  vvli g(26, vlli(0, 0));
-  a = t.size();
-  vector<vector<char>> f(a, vector<char>(0));
-  rep(j, 0, a)
+  lli len = t.size();
+  set<char> g;
+  rep(i, 0, len)
   {
-    if (j == a - 1)
-    {
-      f[j].pb(t[j]);
-    }
-    else
-    {
-      f[j].pb(t[j]);
-      f[j].pb(t[j + 1]);
-    }
+    g.insert(t[i]);
   }
-  rep(i, 0, a)
+  if (g.size() <= 1)
   {
-    for (char c = 'a'; c <= 'z'; ++c)
+    std::cout << 0 << endl;
+    return 0;
+  }
+
+  for (auto c = 'a'; c <= 'z'; c++)
+  {
+    rep(i, 0, len)
     {
-      if (t[i] == c)
+      rep(j, 0, len)
       {
-        d[count]++;
-        ans = max(ans, d[count]);
-        g[count].pb(i + 1);
+        if (i != j && t[j] != c)
+        {
+          count++;
+        }
+        else
+        {
+          count = 0;
+        }
+        tmp = max(tmp, count);
       }
-      count++;
-    }
-    count = 0;
-  }
-  lli diff = 0, sum = 0;
-  rep(i, 0, 26)
-  {
-    if (d[i] == ans)
-    {
-      b = i + 1;
-      e.pb(b);
-    }
-    rep(j, 0, g[i].size() - 1)
-    {
-      diff += g[i][j + 1] - g[i][j];
-    }
-    cout << "diff: " << i + 1 << " : " << diff << endl;
-    sum = max(sum, diff);
-    diff = 0;
-  }
-  rep(i, 0, 26)
-  {
-    rep(j, 0, g[i].size())
-    {
-      diff += g[i][j + 1] - g[i][j];
-    }
-    if (diff == sum)
-    {
-      w = i + 1;
-      // cout << w << endl;
-    }
-    // cout << "diff: " << diff << endl;
-    diff = 0;
-    // cout << "g: " << g[i] << endl;
-  }
-  rep(i, 0, 26)
-  {
-    rep(j, 0, g[i].size())
-    {
-      cout << "g: " << i + 1 << " : " << g[i][j] << endl;
+      count = 0;
+      ans = min(ans, tmp);
     }
   }
+  std::cout << ans << endl;
 }
