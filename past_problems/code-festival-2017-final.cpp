@@ -1,5 +1,6 @@
 // B - Palindrome-phobia
 // https://atcoder.jp/contests/cf17-final/tasks/cf17_final_b
+// 部分文字列が回文にならないように組み替える。
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
