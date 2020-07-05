@@ -1,6 +1,7 @@
 // A - Airport Bus
 // 客の搭乗時刻・到着時刻、バスの出発時刻、バスの定員をそれぞれ考慮し、
 // Greedy-Methodsによって乗せられる限り乗せていく。
+// 参考: https://drken1215.hatenablog.com/entry/2019/03/26/115300
 #include <bits/stdc++.h>
 using namespace std;
 #define lli long long int
