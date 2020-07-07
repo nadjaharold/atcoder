@@ -89,8 +89,114 @@ int main()
   {
     if (s[i] == '#')
     {
-      e[i + 1] = 1;
+      e[i] = 1;
     }
   }
-  cout << n << endl;
+
+  // rep(i, 0, d)
+  // {
+  //   cout << e[i] << " ";
+  // }
+  // cout << endl;
+  if (c < d)
+  {
+    repe(i, b + 1, d)
+    {
+      if (b >= d)
+      {
+        break;
+      }
+      else if (e[i] == 1 && e[i + 1] == 1)
+      {
+
+        cout << "No" << endl;
+        return 0;
+      }
+      else if (e[i] == 1)
+      {
+        b += 2;
+      }
+      else if (e[i + 1] == 1)
+      {
+        b += 1;
+      }
+    }
+    e[d - 1] = 1;
+    repe(i, a + 1, c)
+    {
+      if (a >= c)
+      {
+        break;
+      }
+      else if (e[i] == 1 && e[i + 1] == 1)
+      {
+        // rep(j, 0, c)
+        // {
+        //   cout << e[j] << " ";
+        // }
+        // cout << endl;
+        cout << "No" << endl;
+        return 0;
+      }
+      else if (e[i] == 1)
+      {
+        a += 2;
+      }
+      else if (e[i + 1] == 1)
+      {
+        a += 1;
+      }
+    }
+  }
+  else
+  {
+    repe(i, a + 1, c)
+    {
+      if (a >= c)
+      {
+        break;
+      }
+      else if (e[i] == 1 && e[i + 1] == 1 && e[i + 2] == 1)
+      {
+        // rep(j, 0, c)
+        // {
+        //   cout << e[j] << " ";
+        // }
+        // cout << endl;
+        cout << "No" << endl;
+        return 0;
+      }
+      // else if (e[i] == 1)
+      // {
+      //   a += 2;
+      // }
+      // else if (e[i + 1] == 1)
+      // {
+      //   a += 1;
+      // }
+    }
+    e[c - 1] = 1;
+    repe(i, b + 1, d)
+    {
+      if (b >= d)
+      {
+        break;
+      }
+      else if (e[i] == 1 && e[i + 1] == 1)
+      {
+
+        cout << "No" << endl;
+        return 0;
+      }
+      else if (e[i] == 1)
+      {
+        b += 2;
+      }
+      else if (e[i + 1] == 1)
+      {
+        b += 1;
+      }
+    }
+  }
+  cout << "Yes" << endl;
 }
