@@ -88,25 +88,8 @@ int main()
     cin >> d[i];
   }
   SORTR(d);
-  // rep(i, 0, n - 1)
-  // {
-  //   if (count < 2)
-  //   {
-  //     // cout << "i: " << i << " count: " << count << endl;
-  //     ans += d[i] + w;
-  //     // cout << "ans: " << ans << endl;
-  //     count++;
-  //   }
-  //   else
-  //   {
-  //     w += min(d[i - 1] - d[i], 0LL);
-  //     ans += (d[i] + w);
-  //     // cout << i << " ans2: " << ans << endl;
-  //     count = 0;
-  //     count++;
-  //   }
-  // }
-  rep(i,1,n){
+  rep(i, 1, n)
+  {
     ans += d[i / 2];
   }
   cout << ans << endl;
