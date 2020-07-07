@@ -92,15 +92,15 @@ int main()
     SORT(s[i]);
     if (g[s[i]] != 0)
     {
-      g[s[i]] += g[s[i]];
-      count++;
+      g[s[i]]++;
+      ans += g[s[i]] - 1;
     }
     else
     {
       g[s[i]]++;
     }
   }
-  cout << count << endl;
+  cout << ans << endl;
 }
 
 // https://atcoder.jp/contests/abc137/tasks/abc137_b
