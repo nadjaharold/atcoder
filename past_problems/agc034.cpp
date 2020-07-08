@@ -1,3 +1,5 @@
+// A - Kenken Race
+// テンプレ更新。判定用のisOk関数を用意しておいて丁寧に場合分け。
 #pragma GCC optimize("Ofast")
 #include <bits/stdc++.h>
 using namespace std;
@@ -77,7 +79,7 @@ bool chmin(T &a, const T &b)
 }
 //---------------------------------------------------------------------------------------------------
 lli a = 0, b = 0, c = 0, d = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
-string s, t;
+string s = "", t = "";
 vector<pair<lli, lli>> pr;
 map<lli, lli> mp;
 set<lli> st;
