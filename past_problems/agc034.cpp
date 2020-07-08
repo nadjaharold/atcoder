@@ -1,6 +1,7 @@
-// A - Kenken Race
+#pragma GCC optimize("Ofast")
 #include <bits/stdc++.h>
 using namespace std;
+#define out(x) cout << x << '\n'
 #define lli long long int
 #define uli unsigned long long int
 #define rep(i, m, n) for (lli i = m; i < (n); i++)
@@ -21,7 +22,6 @@ const double PI = acos(-1);
 #define pb push_back
 #define eb emplace_back
 #define mp make_pair
-#pragma GCC optimize("Ofast")
 using vi = vector<int>;
 using vvi = vector<vi>;
 using vvvi = vector<vvi>;
@@ -32,6 +32,7 @@ using vvs = vector<vs>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using ll = long long;
+//---------------------------------------------------------------------------------------------------
 // vector入力
 template <typename T>
 istream &operator>>(istream &is, vector<T> &vec)
@@ -74,129 +75,62 @@ bool chmin(T &a, const T &b)
   }
   return false;
 }
+//---------------------------------------------------------------------------------------------------
+lli a = 0, b = 0, c = 0, d = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
+string s, t;
+vector<pair<lli, lli>> pr;
+map<lli, lli> mp;
+set<lli> st;
 
-int main()
+//---------------------------------------------------------------------------------------------------
+vlli e(200010, 0);
+lli isOk(lli x, lli y)
+{
+  e[x] = 1;
+  repe(i, x, y)
+  {
+    if (e[i])
+    {
+      rep(j, 1, 3)
+      {
+        if (s[i] == '.')
+        {
+          e[i + j] = 1;
+        }
+      }
+    }
+  }
+  return e[y];
+}
+//---------------------------------------------------------------------------------------------------
+string solve()
 {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  lli a, b, c, d, h, n, w, ans = 0, count = 0;
-  string s, t;
-  vector<pair<string, pair<lli, lli>>> pr;
+  cin.tie(nullptr);
   cin >> n >> a >> b >> c >> d;
+  a--;
+  b--;
+  c--;
+  d--;
   cin >> s;
-  vlli e(200010, 0);
-  rep(i, 0, s.size())
-  {
-    if (s[i] == '#')
-    {
-      e[i] = 1;
-    }
-  }
+  if (!isOk(a, c))
+    return "No";
+  if (!isOk(b, d))
+    return "No";
 
-  // rep(i, 0, d)
-  // {
-  //   cout << e[i] << " ";
-  // }
-  // cout << endl;
   if (c < d)
-  {
-    repe(i, b + 1, d)
-    {
-      if (b >= d)
-      {
-        break;
-      }
-      else if (e[i] == 1 && e[i + 1] == 1)
-      {
+    return "Yes";
 
-        cout << "No" << endl;
-        return 0;
-      }
-      else if (e[i] == 1)
-      {
-        b += 2;
-      }
-      else if (e[i + 1] == 1)
-      {
-        b += 1;
-      }
-    }
-    e[d - 1] = 1;
-    repe(i, a + 1, c)
-    {
-      if (a >= c)
-      {
-        break;
-      }
-      else if (e[i] == 1 && e[i + 1] == 1)
-      {
-        // rep(j, 0, c)
-        // {
-        //   cout << e[j] << " ";
-        // }
-        // cout << endl;
-        cout << "No" << endl;
-        return 0;
-      }
-      else if (e[i] == 1)
-      {
-        a += 2;
-      }
-      else if (e[i + 1] == 1)
-      {
-        a += 1;
-      }
-    }
-  }
-  else
+  rep(i, b - 1, d)
   {
-    repe(i, a + 1, c)
-    {
-      if (a >= c)
-      {
-        break;
-      }
-      else if (e[i] == 1 && e[i + 1] == 1 && e[i + 2] == 1)
-      {
-        // rep(j, 0, c)
-        // {
-        //   cout << e[j] << " ";
-        // }
-        // cout << endl;
-        cout << "No" << endl;
-        return 0;
-      }
-      // else if (e[i] == 1)
-      // {
-      //   a += 2;
-      // }
-      // else if (e[i + 1] == 1)
-      // {
-      //   a += 1;
-      // }
-    }
-    e[c - 1] = 1;
-    repe(i, b + 1, d)
-    {
-      if (b >= d)
-      {
-        break;
-      }
-      else if (e[i] == 1 && e[i + 1] == 1)
-      {
-
-        cout << "No" << endl;
-        return 0;
-      }
-      else if (e[i] == 1)
-      {
-        b += 2;
-      }
-      else if (e[i + 1] == 1)
-      {
-        b += 1;
-      }
-    }
+    if (s[i] == '.' && s[i + 1] == '.' && s[i + 2] == '.')
+      return "Yes";
   }
-  cout << "Yes" << endl;
+  return "No";
+}
+
+//---------------------------------------------------------------------------------------------------
+signed main()
+{
+  out(solve());
 }
