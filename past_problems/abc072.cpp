@@ -111,7 +111,6 @@ lli solve()
       ans++;
     }
   }
-  // out(ans);
   return ans;
 }
 
