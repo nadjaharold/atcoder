@@ -95,24 +95,24 @@ lli solve()
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cin >> n;
-  vlli d(n);
+  vlli d(n), e(n);
   rep(i, 0, n)
   {
     cin >> d[i];
+    e[i] = d[i];
   }
-  rep(i, 0, n)
+  rep(i, 0, n - 1)
   {
-    if (d[i] == i + 1)
+    if (e[i] == i + 1)
     {
-      count++;
-      if (d[i + 1] == i + 2 && i != n - 1)
-      {
-        ans++;
-      }
+      e[i] = a;
+      e[i] = e[i + 1];
+      e[i + 1] = a;
+      ans++;
     }
   }
-  out(ans);
-  return count;
+  // out(ans);
+  return ans;
 }
 
 //---------------------------------------------------------------------------------------------------
