@@ -79,7 +79,7 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-  lli b = 0, k, n, ans = 0, count = 0;
+  lli b = 0, k = 0, n = 0, ans = 0, count = 0;
   double a = 0, w = 0, c = 0, h = 0;
   string s, t;
   vector<pair<string, pair<lli, lli>>> pr;
