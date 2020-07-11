@@ -76,7 +76,7 @@ bool chmin(T &a, const T &b)
   return false;
 }
 //---------------------------------------------------------------------------------------------------
-lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
+lli a = 0, b = 0, c = 0, h = 0, L, R, d, n = 0, w = 0, ans = 0, count = 0;
 string s = "", t = "";
 vector<pair<lli, lli>> pr;
 map<lli, lli> mp;
@@ -87,20 +87,23 @@ lli solve()
 {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cin >> n;
-  vlli d(n);
-  rep(i, 0, n)
+  cin >> L >> R >> d;
+  lli count = 0;
+  repe(i, L, R)
   {
-    cin >> d[i];
+    if (i % d == 0)
+    {
+      count++;
+    }
   }
-  return n;
+  return count;
 }
 
 //---------------------------------------------------------------------------------------------------
 signed main()
 {
   out(solve());
-  // if (ans > 0)
+  // if (solve() > 0)
   // {
   //   cout << "Yes"
   //        << "\n";
