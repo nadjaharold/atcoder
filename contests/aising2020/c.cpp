@@ -88,26 +88,66 @@ lli solve()
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cin >> n;
-  vlli d(n);
-  rep(i, 0, n)
+  lli count = 0;
+  repe(i, 1, n)
   {
-    cin >> d[i];
+    rep(j, 1, n)
+    {
+      rep(k, 1, n)
+      {
+        rep(l, 1, n)
+        {
+          if (j * (j + k) + k * (k + l) + l * (l + j) == n)
+          {
+            count++;
+          }
+        }
+      }
+    }
   }
-  return n;
+  return count;
 }
 
 //---------------------------------------------------------------------------------------------------
 signed main()
 {
-  out(solve());
-  // if (ans > 0)
-  // {
-  //   cout << "Yes"
-  //        << "\n";
-  // }
-  // else
-  // {
-  //   cout << "No"
-  //        << "\n";
-  // }
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+  cin >> n;
+  lli count = 0;
+  vlli d(10010, 0);
+  repe(j, 1, 100)
+  {
+    repe(k, 1, 100)
+    {
+      repe(l, 1, 100)
+      {
+        ans = j * (j + k) + k * (l + k) + l * (l + j);
+        if (ans <= 10000)
+        {
+          d[ans]++;
+        }
+      }
+    }
+  }
+
+  repe(i, 1, n)
+  {
+    // repe(j, 1, 100)
+    // {
+    //   repe(k, 1, 3 * j)
+    //   {
+    //     repe(l, 1, 3 * j)
+    //     {
+    //       if (j * (j + k) + k * (l + k) + l * (l + j) == i)
+    //       {
+    //         // cout << "j: " << j << " k: " << k << " l: " << l << " m: " << m << endl;
+    //         count++;
+    //       }
+    //     }
+    //   }
+    // }
+
+    cout << d[i] << endl;
+  }
 }
