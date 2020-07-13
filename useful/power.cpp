@@ -527,7 +527,7 @@ string numStr = "1234";
 int num = stoi(numStr);
 
 ◆Stringからchar配列への変換
-const char* cs = s.data();
+const char* cs = s.data(); // aisingにて使用。
 
 ◆char[]からStringに変換
 char c_str[] = {"hello world!"};
