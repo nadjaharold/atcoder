@@ -614,7 +614,3 @@ cout << (regex_match(S, regex("(dream|dreamer|erase|eraser)*")) ? "YES" : "NO") 
 string s = regex_replace(s, regex("[^AC]"), "");
 
 */
-
-// https://github.com/git/git/security/advisories/GHSA-qm7j-c969-7j4q
-// https://news.mynavi.jp/article/20200418-1018783/
-// https://gunosy.com/articles/adod8
