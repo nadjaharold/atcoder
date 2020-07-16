@@ -1,4 +1,5 @@
 // C - March
+// 文字種ごとに組み合わせを考える。mapでの多重ループ。
 #pragma GCC optimize("Ofast")
 #include <bits/stdc++.h>
 using namespace std;
