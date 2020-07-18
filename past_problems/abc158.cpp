@@ -1,4 +1,5 @@
 // D - String Formation
+// 文字列の先頭に要素を挿入する場合、+演算子の処理よりもinsert(0,t)を用いる方が数倍早い。
 #pragma GCC optimize("Ofast")
 #include <bits/stdc++.h>
 using namespace std;
@@ -115,7 +116,6 @@ string solve()
       }
       else if (t[2] == '1' && rev == false)
       {
-        // s = t[4] + s;
         u = t[4];
         s.insert(0, u);
       }
@@ -123,7 +123,6 @@ string solve()
       {
         if (rev == true)
         {
-          // s = t[4] + s;
           u = t[4];
           s.insert(0, u);
         }
@@ -132,7 +131,6 @@ string solve()
           s += t[4];
         }
       }
-      // rev = false;
     }
   }
   if (rev == true)
