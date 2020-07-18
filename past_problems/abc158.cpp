@@ -1,5 +1,6 @@
 // D - String Formation
 // 文字列の先頭に要素を挿入する場合、+演算子の処理よりもinsert(0,t)を用いる方が数倍早い。
+// 文字列の反転を愚直に実行するとTLEするため、反転のBooleanを管理することで計算量を削減する。
 #pragma GCC optimize("Ofast")
 #include <bits/stdc++.h>
 using namespace std;
