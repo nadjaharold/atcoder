@@ -79,7 +79,12 @@ bool chmin(T &a, const T &b)
 //---------------------------------------------------------------------------------------------------
 void solve()
 {
-  lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
+}
+
+//---------------------------------------------------------------------------------------------------
+signed main()
+{
+  lli a = 0, b = 0, c = 0, h = 0, k, n = 0, w = 0, ans = 0, count = 0;
   string s = "", t = "";
   vector<pair<lli, lli>> pr;
   map<lli, lli> mp;
@@ -87,17 +92,35 @@ void solve()
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cin >> n;
-  vlli d(n);
-  rep(i, 0, n)
-  {
-    cin >> d[i];
-  }
-  out(n);
-}
+  cin >> a >> b >> c;
+  cin >> k;
+  ans = k;
+  lli A, B = b, C = c;
 
-//---------------------------------------------------------------------------------------------------
-signed main()
-{
-  solve();
+  if (c > b && b > a && c > a)
+  {
+    out("Yes");
+    return 0;
+  }
+
+  while (ans > 0)
+  {
+    B = B * 2;
+    ans--;
+    if (B > a)
+    {
+      break;
+    }
+  }
+  while (ans > 0)
+  {
+    C = C * 2;
+    ans--;
+    if (C > B)
+    {
+      out("Yes");
+      return 0;
+    }
+  }
+  out("No");
 }

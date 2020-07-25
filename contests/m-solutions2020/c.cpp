@@ -79,7 +79,12 @@ bool chmin(T &a, const T &b)
 //---------------------------------------------------------------------------------------------------
 void solve()
 {
-  lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
+}
+
+//---------------------------------------------------------------------------------------------------
+signed main()
+{
+  lli a = 0, b = 0, c = 0, h = 0, k = 0, n = 0, w = 0, ans = 0, count = 0;
   string s = "", t = "";
   vector<pair<lli, lli>> pr;
   map<lli, lli> mp;
@@ -87,17 +92,67 @@ void solve()
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cin >> n;
-  vlli d(n);
+  cin >> n >> k;
+  vlli d(n), e(n, 1), f(n + 1, 0);
   rep(i, 0, n)
   {
     cin >> d[i];
   }
-  out(n);
-}
 
-//---------------------------------------------------------------------------------------------------
-signed main()
-{
-  solve();
+  if (k == 1)
+  {
+    rep(i, 1, n)
+    {
+      if (d[i] > d[i - 1])
+      {
+        out("Yes");
+      }
+      else
+      {
+        out("No");
+      }
+    }
+    return 0;
+  }
+
+  repe(i, 0, n)
+  {
+    f[i] = 1;
+  }
+
+  rep(i, 0, n)
+  {
+    if (i <= k - 1)
+    {
+      f[i + 1] = f[i] * d[i];
+    }
+    else if (i >= k)
+    {
+      f[i + 1] = f[i] * d[i] / d[i - (k - 1) - 1];
+    }
+  }
+
+  // repe(i, 0, n)
+  // {
+  //   cout << f[i] << " ";
+  // }
+  // cout << endl;
+
+  repe(i, k + 1, n)
+  {
+    if (f[i] > f[i - 1])
+    {
+      out("Yes");
+    }
+    else
+    {
+      out("No");
+    }
+  }
+
+  // rep(i, 2, n)
+  // {
+  //   cout << e[i] << " ";
+  // }
+  // cout << endl;
 }

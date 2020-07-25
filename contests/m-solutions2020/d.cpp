@@ -88,14 +88,73 @@ void solve()
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cin >> n;
-  vlli d(n);
+  vlli d(n), e(n);
   rep(i, 0, n)
   {
     cin >> d[i];
+    e[i] = d[i];
   }
-  out(n);
-}
+  SORT(e);
+  a = e[n / 2];
+  ans = 1000;
+  // cout << e << endl;
+  // cout << a << endl;
+  bool z = false, xx = false, yy = false;
+  rep(i, 0, n)
+  {
+    b = d[i];
+    rep(j, i + 1, n)
+    {
+      if (d[j] > b)
+      {
+        z = true;
+        // cout << "e: " << d[j] << endl;
+      }
+    }
+    // cout << "z: " << z << endl;
+    if (d[i] < a && z == true)
+    {
+      count += (ans / d[i]);
+      ans -= (ans / d[i]) * d[i];
+    }
+    else if (d[i] >= a)
+    {
+      // cout << "ans2: " << ans << " count: " << count << endl;
+      rep(j, i + 1, n)
+      {
+        if (d[j] > b)
+        {
+          xx = true;
+          // cout << "e: " << d[j] << endl;
+        }
+        else if (d[j] < b)
+        {
+          yy = true;
+        }
+      }
+      if (xx == false)
+      {
+        ans += count * d[i];
+        count = 0;
+      }
+      else if (xx == true && yy == true)
+      {
+        ans += count * d[i];
+        count = 0;
+      }
+      xx = false;
+      yy = false;
+    }
+    z = false;
+  }
 
+  out(ans);
+
+  // else
+  // {
+  //   out(1000);
+  // }
+}
 //---------------------------------------------------------------------------------------------------
 signed main()
 {

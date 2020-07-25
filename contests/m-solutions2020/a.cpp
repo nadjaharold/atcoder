@@ -82,18 +82,45 @@ void solve()
   lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
   string s = "", t = "";
   vector<pair<lli, lli>> pr;
-  map<lli, lli> mp;
+  map<lli, lli> mp1;
   set<lli> st;
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cin >> n;
   vlli d(n);
-  rep(i, 0, n)
+  if (n >= 400 && n <= 599)
   {
-    cin >> d[i];
+    out(8);
   }
-  out(n);
+  else if (n >= 600 && n <= 799)
+  {
+    out(7);
+  }
+  else if (n >= 800 && n <= 999)
+  {
+    out(6);
+  }
+  else if (n >= 1000 && n <= 1199)
+  {
+    out(5);
+  }
+  else if (n >= 1200 && n <= 1399)
+  {
+    out(4);
+  }
+  else if (n >= 1400 && n <= 1599)
+  {
+    out(3);
+  }
+  else if (n >= 1600 && n <= 1799)
+  {
+    out(2);
+  }
+  else if (n >= 1800 && n <= 1999)
+  {
+    out(1);
+  }
 }
 
 //---------------------------------------------------------------------------------------------------

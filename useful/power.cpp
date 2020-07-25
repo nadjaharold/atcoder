@@ -1,4 +1,29 @@
 /*
+// 文字列内の各文字が特定の英小文字と一致するか判定
+
+  n = s.size();
+  vlli d(26, 0);
+  rep(i, 0, n)
+  {
+    for (auto c = 'a'; c <= 'z'; ++c)
+    {
+      if (s[i] == c)
+      {
+        d[count]++;
+      }
+      count++;
+    }
+    count = 0;
+  }
+  rep(i, 0, 26)
+  {
+    if (d[i] == 2)
+      ans++;
+  }
+
+
+
+
 ◆二次元配列の初期化
 memset(seen, 0, sizeof(seen)); // seen 配列全体を false に初期化
 
