@@ -115,22 +115,22 @@ signed main()
     return 0;
   }
 
-  repe(i, 0, n)
-  {
-    f[i] = 1;
-  }
+  // repe(i, 0, n)
+  // {
+  //   f[i] = 1;
+  // }
 
-  rep(i, 0, n)
-  {
-    if (i <= k - 1)
-    {
-      f[i + 1] = f[i] * d[i];
-    }
-    else if (i >= k)
-    {
-      f[i + 1] = f[i] * d[i] / d[i - (k - 1) - 1];
-    }
-  }
+  // rep(i, 0, n)
+  // {
+  //   if (i <= k - 1)
+  //   {
+  //     f[i + 1] = f[i] * d[i];
+  //   }
+  //   else if (i >= k)
+  //   {
+  //     f[i + 1] = f[i] * d[i] / d[i - (k - 1) - 1];
+  //   }
+  // }
 
   // repe(i, 0, n)
   // {
@@ -138,9 +138,9 @@ signed main()
   // }
   // cout << endl;
 
-  repe(i, k + 1, n)
+  rep(i, k, n)
   {
-    if (f[i] > f[i - 1])
+    if (d[i] > d[i - k])
     {
       out("Yes");
     }
