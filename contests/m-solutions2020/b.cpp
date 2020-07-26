@@ -105,22 +105,36 @@ signed main()
 
   while (ans > 0)
   {
-    B = B * 2;
-    ans--;
     if (B > a)
     {
-      break;
+      // cout << "ans2: " << ans << " B: " << B << endl;
+      while (ans > 0)
+      {
+        if (C > B)
+        {
+          out("Yes");
+          return 0;
+        }
+        else
+        {
+          C = C * 2;
+          ans--;
+          if (C > B)
+          {
+            out("Yes");
+            return 0;
+          }
+          // cout << "ans3: " << ans << " B: " << B << endl;
+        }
+      }
     }
-  }
-  while (ans > 0)
-  {
-    C = C * 2;
-    ans--;
-    if (C > B)
+    else
     {
-      out("Yes");
-      return 0;
+      B = B * 2;
+      ans--;
+      // cout << "ans: " << ans << " B: " << B << endl;
     }
   }
+
   out("No");
 }
