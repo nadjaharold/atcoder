@@ -149,7 +149,7 @@ int main()
     x = px, y = py;
   }
   ans = dist[X + 1500][Y + 1500] - 1500LL;
-  if (ans < 0 || ans == 0)
+  if (ans < 0 || ans == 0)  
   {
     cout << -1 << endl;
   }

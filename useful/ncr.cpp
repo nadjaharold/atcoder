@@ -44,7 +44,7 @@ int main()
   FORR(i, 0, n)
   fact_inv[i] = fact_inv[i + 1] * (i + 1) % MOD;
   // nCrの計算
-  cout << "6C3: " << comb(5, 2) << '\n';
+  cout << "6C3: " << comb(6, 3) << '\n';
   cout << "666C390: " << comb(666, 390) << '\n';
   return 0;
 }

@@ -77,48 +77,85 @@ bool chmin(T &a, const T &b)
 }
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
-void solve()
-{
-  lli a = 0, b = 0, c = 0, h = 0, x, k, d, n = 0, w = 0, ans = 0, count = 0;
-  string s = "", t = "";
-  vector<pair<lli, lli>> pr;
-  map<lli, lli> mp;
-  set<lli> st;
-
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  cin >> x >> k >> d;
-  ans = k * d;
-  if (d <= abs(x) / k)
-  {
-    out(abs(x) - ans);
-  }
-  else
-  {
-    count = abs(x) / d;
-    a = abs(x) - (count * d);
-    if (count % 2 == k % 2)
-    {
-      out(a);
-    }
-    else
-    {
-      b = abs(a - d);
-      c = abs(a + d);
-      if (b < c)
-      {
-        out(b);
-      }
-      else
-      {
-        out(c);
-      }
-    }
-  }
-}
 
 //---------------------------------------------------------------------------------------------------
 signed main()
 {
-  solve();
+  lli a = 0, b = 0, c = 0, h = 0, n = 0, r, k, w = 0, ans = 0, count = 0;
+  string s = "", t = "";
+  vector<pair<lli, lli>> pr;
+  set<lli> st;
+
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+  cin >> r >> c >> k;
+  vlli R(k), C(k), V(k);
+  vector<vlli> z(r, vlli(c, 0));
+  rep(i, 0, k)
+  {
+    cin >> R[i] >> C[i] >> V[i];
+    z[R[i] - 1][C[i] - 1] = V[i];
+  }
+
+  const lli dx[] = {0, 1};
+  const lli dy[] = {1, 0};
+
+  lli sx, sy, gx, gy;
+  sx = 0;
+  sy = 0;
+  gx = r - 1;
+  gy = c - 1;
+
+  vector<vector<lli>> dist(3000, vector<lli>(3000, -1));
+  dist[sx][sy] = 0; // スタートを 0 に
+
+  vector<vector<lli>> prev_x(3000, vector<lli>(3000, -1));
+  vector<vector<lli>> prev_y(3000, vector<lli>(3000, -1));
+
+  queue<pair<lli, lli>> que;
+  que.push(mp(sx, sy)); // スタートを push
+
+  while (!que.empty())
+  {
+    pair<lli, lli> current_pos = que.front(); // キューの先頭を見る (C++ ではこれをしても pop しない)
+    lli x = current_pos.first;
+    lli y = current_pos.second;
+    que.pop(); // キューから pop を忘れずに
+
+    // 隣接頂点を探索
+    for (lli direction = 0; direction < 2; ++direction)
+    {
+      lli next_x = x + dx[direction];
+      lli next_y = y + dy[direction];
+      if (next_x < 0 || next_x >= 3000 || next_y < 0000 || next_y >= 3000)
+        continue; // 場外アウトならダメ
+
+      // まだ見ていない頂点なら push
+      if (dist[next_x][next_y] == -1)
+      {
+        que.push(make_pair(next_x, next_y));
+        dist[next_x][next_y] = dist[x][y] + 1LL; // (next_x, next_y) の距離も更新
+        prev_x[next_x][next_y] = x;              // どの頂点から情報が伝播して来たか、縦方向の座標をメモ
+        prev_y[next_x][next_y] = y;              // どの頂点から情報が伝播して来たか、横方向の座標をメモ
+      }
+    }
+  }
+  lli x = gx, y = gy;
+  while (x != -1 && y != -1)
+  {
+    ans += z[x][y];
+    // 前の頂点へ行く
+    lli px = prev_x[x][y];
+    lli py = prev_y[x][y];
+    x = px, y = py;
+  }
+  out("ans: " << ans);
+  rep(i, 0, r)
+  {
+    rep(j, 0, c)
+    {
+      cout << z[i][j];
+    }
+    cout << endl;
+  }
 }

@@ -20,7 +20,9 @@ int main()
   for (ll i = 1; i <= n; ++i)
   {
     ans += d[i] * i;
+    // cout << d[i] << endl;
   }
+
   cout << ans << endl;
 }
 
