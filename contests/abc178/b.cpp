@@ -6,9 +6,8 @@ using namespace std;
 #define uli unsigned long long int
 #define rep(i, m, n) for (lli i = m; i < (n); i++)
 #define repe(i, m, n) for (lli i = m; i <= (n); i++)
-
-#define SIZE(x) ((lli)(x).size())
 #define ALL(x) (x).begin(), (x).end()
+#define SIZE(x) ((lli)(x).size())
 #define MAX(x) *max_element(ALL(x))
 #define MIN(x) *min_element(ALL(x))
 #define _GLIBCXX_DEBUG
@@ -77,27 +76,29 @@ bool chmin(T &a, const T &b)
   return false;
 }
 //---------------------------------------------------------------------------------------------------
+ll powmod(ll x, ll y)
+{
+  ll res = 1;
+  for (ll i = 0; i < y; i++)
+  {
+    res = res * x % MOD;
+  }
+  return res;
+}
 //---------------------------------------------------------------------------------------------------
 void solve()
 {
-  lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
-  lli D, T, S;
+  lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = -INF, count = 0;
+  string s = "", t = "";
   vector<pair<lli, lli>> pr;
   map<lli, lli> ma;
   set<lli> st;
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cin >> D >> T >> S;
-  ans = T * S;
-  if (ans >= D)
-  {
-    out("Yes");
-  }
-  else
-  {
-    out("No");
-  }
+  cin >> a >> b >> c >> n;
+  ans = max(max(a * c, a * n), max(b * c, b * n));
+  out(ans);
 }
 
 //---------------------------------------------------------------------------------------------------
