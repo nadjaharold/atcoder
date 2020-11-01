@@ -1,0 +1,5 @@
+*.out
+*/.vscode
+*/answer.cpp
+.vscode/settings.json
+useful/a.out
