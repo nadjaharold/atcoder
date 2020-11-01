@@ -1,4 +1,15 @@
 /*
+// 累乗 MOD
+ll powmod(ll x, ll y)
+{
+  ll res = 1;
+  for (ll i = 0; i < y; i++)
+  {
+    res = res * x % MOD;
+  }
+  return res;
+}
+
 // 文字列内の各文字が特定の英小文字と一致するか判定
 
   n = s.size();
