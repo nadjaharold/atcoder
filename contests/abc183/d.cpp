@@ -85,67 +85,45 @@ void solve()
 signed main()
 {
   lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
-  string s = "", t = "";
-  vector<pair<lli, lli>> pr;
+
+  vector<pair<pair<lli, lli>, lli>> pr;
   map<lli, lli> ma;
   set<lli> st;
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cin >> n;
-  vlli d(n), e(n + 1, 0), f;
+  cin >> n >> w;
+  lli s, t, p;
+  vlli d(200010, 0), S, T, P;
+  vvli e(n);
   rep(i, 0, n)
   {
-    cin >> d[i];
-    // a = max(a, d[i]);
+    cin >> s >> t >> p;
+    S.pb(s);
+    T.pb(t);
+    P.pb(p);
   }
-  lli now = 0, maxs = 0, sum = 0;
   rep(i, 0, n)
   {
-    sum += d[i];
-
-    maxs = max(maxs, sum);
-    ans = max(ans, now + maxs);
-    // out("sum: " << sum << " ans: " << ans << " maxs: " << maxs);
-
-    now += sum;
-    // out("now: " << now);
+    // for (lli j = S[i]; j < T[i]; j++)
+    // {
+    //   d[j] += P[i];
+    // }
+    d[S[i]] += P[i];
+    d[T[i]] -= P[i];
   }
-  out(ans);
-
-  // if (a < 0)
-  // {
-  //   out(0);
-  //   return 0;
-  // }
-  // e[1] = d[0];
-  // rep(i, 1, n)
-  // {
-  //   e[i + 1] = e[i] + d[i];
-  // }
-  // repe(i, 0, n)
-  // {
-  //   out(e[i]);
-  // }
-  // out(MAX(e));
-  // lli k = 1;
-  // f.pb(0);
-  // rep(i, 0, n)
-  // {
-  //   rep(j, 0, k)
-  //   {
-  //     ans += d[j];
-  //     f.pb(ans);
-  //   }
-  //   k++;
-  // }
-  // rep(i, 0, f.size())
-  // {
-  //   out(f[i]);
-  // }
-  // out(MAX(f));
+  for (lli i = 0; i < d.size(); i++)
+  {
+    if (0 < i)
+      d[i] += d[i - 1];
+  }
+  rep(i, 0, n)
+  {
+    if (d[i] > w)
+    {
+      out("No");
+      return 0;
+    }
+  }
+  out("Yes");
 }
-
-// 1 3 6 10 15 21 28 36 45 55
-// -2 -4 -3 -5 -4 -1 -3 -2 1 0 -2 -1 2 1 0
-// -2 -1 2 1 0

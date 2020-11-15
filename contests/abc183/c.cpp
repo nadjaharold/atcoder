@@ -79,12 +79,7 @@ bool chmin(T &a, const T &b)
 //---------------------------------------------------------------------------------------------------
 void solve()
 {
-}
-
-//---------------------------------------------------------------------------------------------------
-signed main()
-{
-  lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
+  lli a = 0, b = 0, c = 0, h = 0, n = 0, k, w = 0, ans = 0, count = 0;
   string s = "", t = "";
   vector<pair<lli, lli>> pr;
   map<lli, lli> ma;
@@ -92,60 +87,78 @@ signed main()
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cin >> n;
-  vlli d(n), e(n + 1, 0), f;
+  cin >> n >> k;
+  vvli d(n, vlli(n));
+  vlli e(n);
   rep(i, 0, n)
   {
-    cin >> d[i];
-    // a = max(a, d[i]);
+    rep(j, 0, n)
+    {
+      cin >> d[i][j];
+    }
   }
-  lli now = 0, maxs = 0, sum = 0;
   rep(i, 0, n)
   {
-    sum += d[i];
-
-    maxs = max(maxs, sum);
-    ans = max(ans, now + maxs);
-    // out("sum: " << sum << " ans: " << ans << " maxs: " << maxs);
-
-    now += sum;
-    // out("now: " << now);
+    e[i] = i;
   }
-  out(ans);
-
-  // if (a < 0)
+  SORT(e);
+  // for (lli bit = 0; bit < (1 << n); ++bit)
   // {
-  //   out(0);
-  //   return 0;
-  // }
-  // e[1] = d[0];
-  // rep(i, 1, n)
-  // {
-  //   e[i + 1] = e[i] + d[i];
-  // }
-  // repe(i, 0, n)
-  // {
-  //   out(e[i]);
-  // }
-  // out(MAX(e));
-  // lli k = 1;
-  // f.pb(0);
-  // rep(i, 0, n)
-  // {
-  //   rep(j, 0, k)
+  //   count = 0;
+  //   for (int i = 0; i < e.size(); ++i)
   //   {
-  //     ans += d[j];
-  //     f.pb(ans);
+  //     // for (int j = 0; j < n; ++j)
+  //     // {
+  //     //   if (bit & (1 << i))
+  //     //   { // i が S に入っているなら足す
+  //     //     count += d[i][j];
+  //     //   }
+  //     // }
+  //     if (bit & (1 << i))
+  //     { // i が S に入っているなら足す
+  //       count += e[i];
+  //     }
   //   }
-  //   k++;
+  //   if (count == k)
+  //     ans++;
   // }
-  // rep(i, 0, f.size())
+  // lli sum = 0;
+  // while (count != n)
   // {
-  //   out(f[i]);
+  //   sum = 0;
+  //   rep(i, 0, n)
+  //   {
+  //     if (d[count][i] != 0)
+  //     {
+  //       sum += d[count][i];
+  //     }
+  //   }
+  //   if (sum == k)
+  //     ans++;
+  //   count++;
   // }
-  // out(MAX(f));
+  do
+  {
+    if (e[0] != 0)
+      break;
+    ll cost = 0;
+    lli before = -1;
+    for (lli now : e)
+    {
+      if (before >= 0)
+        cost += d[before][now];
+      before = now;
+    }
+    cost += d[before][0];
+    if (cost == k)
+      ans++;
+  } while (next_permutation(e.begin(), e.end()));
+
+  out(ans);
 }
 
-// 1 3 6 10 15 21 28 36 45 55
-// -2 -4 -3 -5 -4 -1 -3 -2 1 0 -2 -1 2 1 0
-// -2 -1 2 1 0
+//---------------------------------------------------------------------------------------------------
+signed main()
+{
+  solve();
+}

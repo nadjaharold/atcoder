@@ -76,76 +76,92 @@ bool chmin(T &a, const T &b)
   return false;
 }
 //---------------------------------------------------------------------------------------------------
+struct UnionFind
+{
+  vector<lli> par; // par[i]:iの親の番号 (例) par[3] = 2 : 3の親が2
+
+  UnionFind(lli N) : par(N)
+  { //最初は全てが根であるとして初期化
+    rep(i, 0, N)
+    {
+      par[i] = i;
+    }
+  }
+
+  lli root(lli x)
+  { // データxが属する木の根を再帰で得る：root(x) = {xの木の根}
+    if (par[x] == x)
+      return x;
+    return par[x] = root(par[x]);
+  }
+
+  void unite(lli x, lli y)
+  {                   // xとyの木を併合
+    lli rx = root(x); //xの根をrx
+    lli ry = root(y); //yの根をry
+    if (rx == ry)
+      return;     //xとyの根が同じ(=同じ木にある)時はそのまま
+    par[ry] = rx; //xとyの根が同じでない(=同じ木にない)時：xの根rxをyの根ryにつける
+  }
+
+  bool same(lli x, lli y)
+  { // 2つのデータx, yが属する木が同じならtrueを返す
+    lli rx = root(x);
+    lli ry = root(y);
+    return rx == ry;
+  }
+};
 //---------------------------------------------------------------------------------------------------
 void solve()
 {
+  lli h = 0, n = 0, w = 0, ans = 0, count = 0;
+  string s = "", t = "";
+  vector<pair<lli, lli>> pr;
+  set<lli> st;
+
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+  lli q;
+  cin >> n >> q;
+  vector<map<lli, lli>> ma(n);
+  vlli d(n);
+  rep(i, 0, n)
+  {
+    cin >> d[i];
+    d[i]--;
+  }
+  UnionFind ufd(n);
+  rep(i, 0, n) ma[i][d[i]] = 1;
+
+  rep(i, 0, q)
+  {
+    lli a, b, c;
+    cin >> a >> b >> c;
+    b--;
+    c--;
+    if (a == 1)
+    {
+      if (ufd.same(b, c))
+        continue;
+      lli x = ufd.root(b);
+      lli y = ufd.root(c);
+      ufd.unite(x, y);
+      if (ma[x].size() < ma[y].size())
+        swap(ma[x], ma[y]);
+      for (const auto z : ma[y])
+      {
+        ma[x][z.first] += z.second;
+      }
+    }
+    else
+    {
+      out(ma[ufd.root(b)][c]);
+    }
+  }
 }
 
 //---------------------------------------------------------------------------------------------------
 signed main()
 {
-  lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
-  string s = "", t = "";
-  vector<pair<lli, lli>> pr;
-  map<lli, lli> ma;
-  set<lli> st;
-
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  cin >> n;
-  vlli d(n), e(n + 1, 0), f;
-  rep(i, 0, n)
-  {
-    cin >> d[i];
-    // a = max(a, d[i]);
-  }
-  lli now = 0, maxs = 0, sum = 0;
-  rep(i, 0, n)
-  {
-    sum += d[i];
-
-    maxs = max(maxs, sum);
-    ans = max(ans, now + maxs);
-    // out("sum: " << sum << " ans: " << ans << " maxs: " << maxs);
-
-    now += sum;
-    // out("now: " << now);
-  }
-  out(ans);
-
-  // if (a < 0)
-  // {
-  //   out(0);
-  //   return 0;
-  // }
-  // e[1] = d[0];
-  // rep(i, 1, n)
-  // {
-  //   e[i + 1] = e[i] + d[i];
-  // }
-  // repe(i, 0, n)
-  // {
-  //   out(e[i]);
-  // }
-  // out(MAX(e));
-  // lli k = 1;
-  // f.pb(0);
-  // rep(i, 0, n)
-  // {
-  //   rep(j, 0, k)
-  //   {
-  //     ans += d[j];
-  //     f.pb(ans);
-  //   }
-  //   k++;
-  // }
-  // rep(i, 0, f.size())
-  // {
-  //   out(f[i]);
-  // }
-  // out(MAX(f));
+  solve();
 }
-
-// 1 3 6 10 15 21 28 36 45 55
-// -2 -4 -3 -5 -4 -1 -3 -2 1 0 -2 -1 2 1 0
-// -2 -1 2 1 0

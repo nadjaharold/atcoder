@@ -79,12 +79,7 @@ bool chmin(T &a, const T &b)
 //---------------------------------------------------------------------------------------------------
 void solve()
 {
-}
-
-//---------------------------------------------------------------------------------------------------
-signed main()
-{
-  lli a = 0, b = 0, c = 0, h = 0, n = 0, w = 0, ans = 0, count = 0;
+  lli h = 0, n = 0, w = 0, count = 0;
   string s = "", t = "";
   vector<pair<lli, lli>> pr;
   map<lli, lli> ma;
@@ -92,60 +87,27 @@ signed main()
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cin >> n;
-  vlli d(n), e(n + 1, 0), f;
-  rep(i, 0, n)
+  double a, b, c, e, x, y, ans = 0;
+  cin >> a >> b >> x >> y;
+  // c = (max(a, x) - min(x, a)) / (abs(b) + abs(y));
+  // if (a > 0)
+  //   ans = a + c;
+  // else
+  //   ans = c * 2 + max(a, x);
+  lli aa = a, bb = b, xx = x, yy = y;
+  if (a > x)
   {
-    cin >> d[i];
-    // a = max(a, d[i]);
+    a = xx;
+    b = yy;
+    x = aa;
+    y = bb;
   }
-  lli now = 0, maxs = 0, sum = 0;
-  rep(i, 0, n)
-  {
-    sum += d[i];
-
-    maxs = max(maxs, sum);
-    ans = max(ans, now + maxs);
-    // out("sum: " << sum << " ans: " << ans << " maxs: " << maxs);
-
-    now += sum;
-    // out("now: " << now);
-  }
-  out(ans);
-
-  // if (a < 0)
-  // {
-  //   out(0);
-  //   return 0;
-  // }
-  // e[1] = d[0];
-  // rep(i, 1, n)
-  // {
-  //   e[i + 1] = e[i] + d[i];
-  // }
-  // repe(i, 0, n)
-  // {
-  //   out(e[i]);
-  // }
-  // out(MAX(e));
-  // lli k = 1;
-  // f.pb(0);
-  // rep(i, 0, n)
-  // {
-  //   rep(j, 0, k)
-  //   {
-  //     ans += d[j];
-  //     f.pb(ans);
-  //   }
-  //   k++;
-  // }
-  // rep(i, 0, f.size())
-  // {
-  //   out(f[i]);
-  // }
-  // out(MAX(f));
+  ans = (y * a + b * x) / (b + y);
+  cout << fixed << setprecision(10) << ans << endl;
 }
 
-// 1 3 6 10 15 21 28 36 45 55
-// -2 -4 -3 -5 -4 -1 -3 -2 1 0 -2 -1 2 1 0
-// -2 -1 2 1 0
+//---------------------------------------------------------------------------------------------------
+signed main()
+{
+  solve();
+}
